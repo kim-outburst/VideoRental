@@ -1,4 +1,8 @@
-package VideoRental;
+package VideoRental.view;
+
+import VideoRental.model.Customer;
+import VideoRental.model.Rental;
+import VideoRental.model.Video;
 
 import java.util.ArrayList;
 import java.util.Date;
