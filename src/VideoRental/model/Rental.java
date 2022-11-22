@@ -1,4 +1,4 @@
-package VideoRental;
+package VideoRental.model;
 
 import java.util.Date;
 
