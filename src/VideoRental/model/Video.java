@@ -1,7 +1,7 @@
 package VideoRental.model;
 
 import java.util.Date;
-//test
+
 public class Video {
 	private String title ;
 
