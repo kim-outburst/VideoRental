@@ -20,20 +20,12 @@ public class VideoRentalController {
         return this.ui.showCommand();
     }
 
-    public void addCustomer(Customer customer) {
-        this.dataManager.addCustomer(customer);
-    }
-
-    public void addVideo(Video video) {
-        this.dataManager.addVideo(video);
-    }
-
     public void runCommand(int command) {
         switch ( command ) {
             case 1: ui.listCustomers() ; break ;
             case 2: ui.listVideos() ; break ;
-            case 3: addCustomer(ui.registerCustomer()); ; break ;
-            case 4: addVideo(ui.registerVideo()); ; break ;
+            case 3: ui.registerCustomer(); ; break ;
+            case 4: ui.registerVideo(); ; break ;
             case 5: ui.rentVideo() ; break ;
             case 6: ui.returnVideo() ; break ;
             case 7: ui.getCustomerReport() ; break;

@@ -138,13 +138,13 @@ public class VRUI {
 		foundCustomer.setRentals(customerRentals);
 	}
 
-	public Customer registerCustomer() {
+	public void registerCustomer() {
 		System.out.println("Enter customer name: ") ;
 		String name = scanner.next();
-		return new Customer(name);
+		this.dataManager.addCustomer(new Customer(name)) ;
 	}
 
-	public Video registerVideo() {
+	public void registerVideo() {
 		System.out.println("Enter video title to register: ") ;
 		String title = scanner.next() ;
 
@@ -155,7 +155,7 @@ public class VRUI {
 		int priceCode = scanner.nextInt();
 
 		Date registeredDate = new Date();
-		return new Video(title, videoType, priceCode, registeredDate) ;
+		this.dataManager.addVideo(new Video(title, videoType, priceCode, registeredDate)) ;
 	}
 
 	public int showCommand() {
