@@ -27,6 +27,7 @@ public class Rental {
 	}
 
 	public void returnVideo() {
+		// TODO: Dead code, need to fixed
 		if ( status == 1 ) {
 			this.status = 1;
 			returnDate = new Date() ;
