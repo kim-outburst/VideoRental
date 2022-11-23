@@ -1,6 +1,7 @@
 package VideoRental.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class VideoRentalDataManager {
@@ -31,5 +32,23 @@ public class VideoRentalDataManager {
 
     public List<Video> getVideos() {
         return this.videos;
+    }
+
+    public void init() {
+        Customer james = new Customer("James") ;
+        Customer brown = new Customer("Brown") ;
+        addCustomer(james);
+        addCustomer(brown) ;
+
+        Video v1 = new Video("v1", VideoType.CD, Video.REGULAR, new Date()) ;
+        Video v2 = new Video("v2", VideoType.DVD, Video.NEW_RELEASE, new Date()) ;
+        addVideo(v1);
+        addVideo(v2) ;
+
+        Rental r1 = new Rental(v1) ;
+        Rental r2 = new Rental(v2) ;
+
+        james.addRental(r1) ;
+        james.addRental(r2) ;
     }
 }

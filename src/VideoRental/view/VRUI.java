@@ -38,8 +38,8 @@ public class VRUI {
 			System.out.println("Name: " + foundCustomer.getName() +
 					"\tRentals: " + foundCustomer.getRentals().size()) ;
 			for ( Rental rental: foundCustomer.getRentals() ) {
-				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ") ;
-				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode()) ;
+				System.out.print("\tTitle: " + rental.getVideoTitle() + " ") ;
+				System.out.print("\tPrice Code: " + rental.getVideoPriceCode()) ;
 			}
 		}
 	}
@@ -56,7 +56,7 @@ public class VRUI {
 
 		List<Rental> customerRentals = foundCustomer.getRentals() ;
 		for ( Rental rental: customerRentals ) {
-			if ( rental.getVideo().getTitle().equals(videoTitle) && rental.getVideo().isRented() ) {
+			if ( rental.getVideoTitle().equals(videoTitle) && rental.getVideo().isRented() ) {
 				rental.returnVideo();
 				rental.getVideo().setRented(false);
 				break ;
@@ -65,21 +65,8 @@ public class VRUI {
 	}
 
 	public void init() {
-		Customer james = new Customer("James") ;
-		Customer brown = new Customer("Brown") ;
-		this.dataManager.addCustomer(james);
-		this.dataManager.addCustomer(brown) ;
-
-		Video v1 = new Video("v1", VideoType.CD, Video.REGULAR, new Date()) ;
-		Video v2 = new Video("v2", VideoType.DVD, Video.NEW_RELEASE, new Date()) ;
-		this.dataManager.addVideo(v1);
-		this.dataManager.addVideo(v2) ;
-
-		Rental r1 = new Rental(v1) ;
-		Rental r2 = new Rental(v2) ;
-
-		james.addRental(r1) ;
-		james.addRental(r2) ;
+		this.dataManager.init();
+//		System.out.println("Initialize Success");
 	}
 
 	public void listVideos() {
@@ -98,8 +85,8 @@ public class VRUI {
 			System.out.println("Name: " + customer.getName() +
 					"\tRentals: " + customer.getRentals().size()) ;
 			for ( Rental rental: customer.getRentals() ) {
-				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ") ;
-				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode()) ;
+				System.out.print("\tTitle: " + rental.getVideoTitle() + " ") ;
+				System.out.print("\tPrice Code: " + rental.getVideoPriceCode()) ;
 			}
 		}
 		System.out.println("End of list");
@@ -137,9 +124,7 @@ public class VRUI {
 		foundVideo.setRented(true);
 
 		// encapsulate collection
-		List<Rental> customerRentals = foundCustomer.getRentals() ;
-		customerRentals.add(rental);
-		foundCustomer.setRentals(customerRentals);
+		foundCustomer.addRental(rental);
 	}
 
 	public void registerCustomer() {

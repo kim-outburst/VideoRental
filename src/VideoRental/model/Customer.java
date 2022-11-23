@@ -1,7 +1,6 @@
 package VideoRental.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Customer {
@@ -40,12 +39,12 @@ public class Customer {
 		String result = "Customer Report for " + getName() + "\n";
 
 		// rentals var
-		List<Rental> rentals = getRentals();
+		List<Rental> rentedVideoinfo = getRentals();
 
 		double totalCharge = 0;
 		int totalPoint = 0;
 
-		for (Rental each : rentals) {
+		for (Rental each : rentedVideoinfo) {
 			double eachCharge = 0;
 			int eachPoint = 0 ;
 
@@ -53,7 +52,7 @@ public class Customer {
 
 			eachPoint = getEachPoints(each);
 
-			result += "\t" + each.getVideo().getTitle() + "\tDays rented: " + each.getdayRented() + "\tCharge: " + eachCharge
+			result += "\t" + each.getVideoTitle() + "\tDays rented: " + each.getdayRented() + "\tCharge: " + eachCharge
 					+ "\tPoint: " + eachPoint + "\n";
 
 			totalCharge += eachCharge;
@@ -63,26 +62,30 @@ public class Customer {
 
 		result += "Total charge: " + totalCharge + "\tTotal Point:" + totalPoint + "\n";
 
+		PrintCouponInfo(totalPoint);
 
+		return result ;
+	}
+
+	private static void PrintCouponInfo(int totalPoint) {
 		if ( totalPoint >= 10 ) {
 			System.out.println("Congrat! You earned one free coupon");
 		}
 		if ( totalPoint >= 30 ) {
 			System.out.println("Congrat! You earned two free coupon");
 		}
-		return result ;
 	}
 
 	public int getEachPoints(Rental rental) {
 		int eachPoint = 0 ;
 
-		if (rental != NULL) {
+		if (rental != null) {
 			int daysRented = 0;
 			daysRented = rental.getdayRented();
 
 			eachPoint++;
 
-			if ((rental.getVideo().getPriceCode() == Video.NEW_RELEASE) )
+			if ((rental.getVideoPriceCode() == Video.NEW_RELEASE) )
 				eachPoint++;
 
 			if ( daysRented > rental.getDaysRentedLimit() )
@@ -95,11 +98,11 @@ public class Customer {
 	public double getEachCharge(Rental rental) {
 		double eachCharge = 0;
 
-		if (rental != NULL) {
+		if (rental != null) {
 			int daysRented = 0;
 			daysRented = rental.getdayRented();
 
-			switch (rental.getVideo().getPriceCode()) {
+			switch (rental.getVideoPriceCode()) {
 				case Video.REGULAR:
 					eachCharge += 2;
 					if (daysRented > 2)
