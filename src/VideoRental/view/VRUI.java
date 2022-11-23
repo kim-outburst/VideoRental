@@ -20,10 +20,18 @@ public class VRUI {
 	// separate query from modifier
 	public void clearRentals() {
 		System.out.println("Enter customer name: ") ;
-		String customerName = scanner.next() ;
+		final String customerName = scanner.next() ;
+		final Customer foundCustomer = CommonUtils.findCustomer(customerName, this.dataManager.getCustomers());
 
-		Customer foundCustomer = CommonUtils.findCustomer(customerName, this.dataManager.getCustomers());
+		showCustomer(foundCustomer);
 
+		if (foundCustomer != null) {
+			List<Rental> rentals = new ArrayList<Rental>();
+			foundCustomer.setRentals(rentals);
+		}
+	}
+
+	private static void showCustomer(Customer foundCustomer) {
 		if ( foundCustomer == null ) {
 			System.out.println("No customer found") ;
 		} else {
@@ -33,9 +41,6 @@ public class VRUI {
 				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ") ;
 				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode()) ;
 			}
-
-			List<Rental> rentals = new ArrayList<Rental>();
-			foundCustomer.setRentals(rentals);
 		}
 	}
 
