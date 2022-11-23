@@ -25,10 +25,7 @@ public class VRUI {
 
 		showCustomer(foundCustomer);
 
-		if (foundCustomer != null) {
-			List<Rental> rentals = new ArrayList<Rental>();
-			foundCustomer.setRentals(rentals);
-		}
+		this.dataManager.clearRentals(foundCustomer);
 	}
 
 	private static void showCustomer(Customer foundCustomer) {

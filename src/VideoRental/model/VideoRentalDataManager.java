@@ -52,8 +52,15 @@ public class VideoRentalDataManager {
         james.addRental(r2) ;
     }
 
-    public void returnVideo(Customer foundCustomer, String videoTitle) {
-        List<Rental> customerRentals = foundCustomer.getRentals() ;
+    public void clearRentals(Customer customer) {
+        if (customer != null) {
+            List<Rental> rentals = new ArrayList<Rental>();
+            customer.setRentals(rentals);
+        }
+    }
+
+    public void returnVideo(Customer customer, String videoTitle) {
+        List<Rental> customerRentals = customer.getRentals() ;
         for ( Rental rental: customerRentals ) {
             final Video video = rental.getVideo();
             if ( video.getTitle().equals(videoTitle) && video.isRented() ) {
