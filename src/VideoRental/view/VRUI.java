@@ -35,11 +35,9 @@ public class VRUI {
 		if ( foundCustomer == null ) {
 			System.out.println("No customer found") ;
 		} else {
-			System.out.println("Name: " + foundCustomer.getName() +
-					"\tRentals: " + foundCustomer.getRentals().size()) ;
+			System.out.println(foundCustomer.getRentalsInfo()) ;
 			for ( Rental rental: foundCustomer.getRentals() ) {
-				System.out.print("\tTitle: " + rental.getVideoTitle() + " ") ;
-				System.out.print("\tPrice Code: " + rental.getVideoPriceCode()) ;
+				System.out.print(rental.getVideoInfo()) ;
 			}
 		}
 	}
@@ -56,7 +54,8 @@ public class VRUI {
 
 		List<Rental> customerRentals = foundCustomer.getRentals() ;
 		for ( Rental rental: customerRentals ) {
-			if ( rental.getVideoTitle().equals(videoTitle) && rental.getVideo().isRented() ) {
+			final Video video = rental.getVideo();
+			if ( video.getTitle().equals(videoTitle) && video.isRented() ) {
 				rental.returnVideo();
 				rental.getVideo().setRented(false);
 				break ;
@@ -73,7 +72,7 @@ public class VRUI {
 		System.out.println("List of videos");
 		List<Video> videos = this.dataManager.getVideos();
 		for ( Video video: videos ) {
-			System.out.println("Price code: " + video.getPriceCode() +"\tTitle: " + video.getTitle()) ;
+			System.out.println(video.getInfo()) ;
 		}
 		System.out.println("End of list");
 	}
@@ -82,11 +81,9 @@ public class VRUI {
 		System.out.println("List of customers");
 		List<Customer> customers = this.dataManager.getCustomers();
 		for ( Customer customer: customers ) {
-			System.out.println("Name: " + customer.getName() +
-					"\tRentals: " + customer.getRentals().size()) ;
+			System.out.println(customer.getRentalsInfo()) ;
 			for ( Rental rental: customer.getRentals() ) {
-				System.out.print("\tTitle: " + rental.getVideoTitle() + " ") ;
-				System.out.print("\tPrice Code: " + rental.getVideoPriceCode()) ;
+				System.out.print(rental.getVideoInfo()) ;
 			}
 		}
 		System.out.println("End of list");

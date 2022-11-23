@@ -20,16 +20,12 @@ public class Rental {
 		return video;
 	}
 
-	public String getVideoTitle() {
-		return video.getTitle();
-	}
-
-	public int getVideoPriceCode() {
-		return video.getPriceCode();
-	}
-
 	public void setVideo(Video video) {
 		this.video = video;
+	}
+
+	public String getVideoInfo() {
+		return video.getInfo();
 	}
 
 	public int getStatus() {
