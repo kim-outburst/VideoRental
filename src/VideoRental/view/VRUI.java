@@ -103,14 +103,7 @@ public class VRUI {
 		System.out.println("Enter video title to rent: ") ;
 		String videoTitle = scanner.next() ;
 
-		Video foundVideo = CommonUtils.findVideo(videoTitle, this.dataManager.getVideos()) ;
-		if ( foundVideo == null ) return ;
-
-		Rental rental = new Rental(foundVideo) ;
-		foundVideo.setRented(true);
-
-		// encapsulate collection
-		foundCustomer.addRental(rental);
+		this.dataManager.rentVideo(foundCustomer, videoTitle);
 	}
 
 	public void registerCustomer() {

@@ -1,5 +1,7 @@
 package VideoRental.model;
 
+import VideoRental.common.CommonUtils;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -69,5 +71,15 @@ public class VideoRentalDataManager {
                 break ;
             }
         }
+    }
+
+    public void rentVideo(Customer customer, String videoTitle) {
+        Video foundVideo = CommonUtils.findVideo(videoTitle, getVideos()) ;
+        if ( foundVideo == null ) return ;
+
+        Rental rental = new Rental(foundVideo) ;
+        foundVideo.setRented(true);
+
+        customer.addRental(rental);
     }
 }
