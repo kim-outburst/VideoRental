@@ -34,6 +34,7 @@ public class Customer {
 
 	}
 
+
 	// Long method (SRP) - Point - Charge + system.out | Logic + Rental (Divergent Change, Feature Envy)
 	public String getReport() {
 		String result = "Customer Report for " + getName() + "\n";
@@ -62,13 +63,7 @@ public class Customer {
 				break;
 			}
 
-			eachPoint++;
-
-			if ((each.getVideo().getPriceCode() == Video.NEW_RELEASE) )
-				eachPoint++;
-
-			if ( daysRented > each.getDaysRentedLimit() )
-				eachPoint -= Math.min(eachPoint, each.getVideo().getLateReturnPointPenalty()) ;
+			eachPoint = getEachPoints(each);
 
 			result += "\t" + each.getVideo().getTitle() + "\tDays rented: " + daysRented + "\tCharge: " + eachCharge
 					+ "\tPoint: " + eachPoint + "\n";
@@ -89,4 +84,24 @@ public class Customer {
 		}
 		return result ;
 	}
+
+	public int getEachPoints(Rental rental) {
+		int eachPoint = 0 ;
+
+		if (rental != NULL) {
+			int daysRented = 0;
+			daysRented = rental.getdayRented();
+
+			eachPoint++;
+
+			if ((rental.getVideo().getPriceCode() == Video.NEW_RELEASE) )
+				eachPoint++;
+
+			if ( daysRented > rental.getDaysRentedLimit() )
+				eachPoint -= Math.min(eachPoint, rental.getVideo().getLateReturnPointPenalty()) ;
+		}
+
+		return eachPoint;
+	}
+
 }
