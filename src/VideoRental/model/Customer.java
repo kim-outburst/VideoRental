@@ -1,7 +1,6 @@
 package VideoRental.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Customer {
@@ -63,14 +62,18 @@ public class Customer {
 
 		result += "Total charge: " + totalCharge + "\tTotal Point:" + totalPoint + "\n";
 
+		PrintCouponInfo(totalPoint);
 
+		return result ;
+	}
+
+	private static void PrintCouponInfo(int totalPoint) {
 		if ( totalPoint >= 10 ) {
 			System.out.println("Congrat! You earned one free coupon");
 		}
 		if ( totalPoint >= 30 ) {
 			System.out.println("Congrat! You earned two free coupon");
 		}
-		return result ;
 	}
 
 	public int getEachPoints(Rental rental) {
