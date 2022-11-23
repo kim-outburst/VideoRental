@@ -36,7 +36,7 @@ public class VRUI {
 				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode()) ;
 			}
 
-			List<Rental> rentals = new ArrayList<Rental>() ;
+			List<Rental> rentals = new ArrayList<Rental>();
 			foundCustomer.setRentals(rentals);
 		}
 	}
@@ -64,12 +64,12 @@ public class VRUI {
 	public void init() {
 		Customer james = new Customer("James") ;
 		Customer brown = new Customer("Brown") ;
-		this.dataManager.addCustomer(james); ;
+		this.dataManager.addCustomer(james);
 		this.dataManager.addCustomer(brown) ;
 
 		Video v1 = new Video("v1", Video.CD, Video.REGULAR, new Date()) ;
 		Video v2 = new Video("v2", Video.DVD, Video.NEW_RELEASE, new Date()) ;
-		this.dataManager.addVideo(v1); ;
+		this.dataManager.addVideo(v1);
 		this.dataManager.addVideo(v2) ;
 
 		Rental r1 = new Rental(v1) ;
