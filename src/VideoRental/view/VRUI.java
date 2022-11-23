@@ -39,18 +39,6 @@ public class VRUI {
 		}
 	}
 
-	public void returnVideo() {
-		System.out.println("Enter customer name: ") ;
-		String customerName = scanner.next() ;
-
-		Customer foundCustomer = CommonUtils.findCustomer(customerName, this.dataManager.getCustomers());
-		if ( foundCustomer == null ) return ;
-
-		System.out.println("Enter video title to return: ") ;
-		String videoTitle = scanner.next() ;
-
-		this.dataManager.returnVideo(foundCustomer, videoTitle);
-	}
 
 	public void init() {
 		this.dataManager.init();
@@ -92,46 +80,6 @@ public class VRUI {
 		}
 	}
 
-	public void rentVideo() {
-		System.out.println("Enter customer name: ") ;
-		String customerName = scanner.next() ;
-
-		Customer foundCustomer = CommonUtils.findCustomer(customerName, this.dataManager.getCustomers());
-
-		if ( foundCustomer == null ) return ;
-
-		System.out.println("Enter video title to rent: ") ;
-		String videoTitle = scanner.next() ;
-
-		Video foundVideo = CommonUtils.findVideo(videoTitle, this.dataManager.getVideos()) ;
-		if ( foundVideo == null ) return ;
-
-		Rental rental = new Rental(foundVideo) ;
-		foundVideo.setRented(true);
-
-		// encapsulate collection
-		foundCustomer.addRental(rental);
-	}
-
-	public void registerCustomer() {
-		System.out.println("Enter customer name: ") ;
-		String name = scanner.next();
-		this.dataManager.addCustomer(new Customer(name)) ;
-	}
-
-	public void registerVideo() {
-		System.out.println("Enter video title to register: ") ;
-		String title = scanner.next() ;
-
-		System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):") ;
-		int videoType = scanner.nextInt();
-
-		System.out.println("Enter price code( 1 for Regular, 2 for New Release ):") ;
-		int priceCode = scanner.nextInt();
-
-		Date registeredDate = new Date();
-		this.dataManager.addVideo(new Video(title, VideoType.convert(videoType), priceCode, registeredDate)) ;
-	}
 
 	public int showCommand() {
 		System.out.println("\nSelect a command !");

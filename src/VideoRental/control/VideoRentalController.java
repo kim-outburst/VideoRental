@@ -24,10 +24,10 @@ public class VideoRentalController {
         switch ( command ) {
             case 1: ui.listCustomers() ; break ;
             case 2: ui.listVideos() ; break ;
-            case 3: ui.registerCustomer(); ; break ;
-            case 4: ui.registerVideo(); ; break ;
-            case 5: ui.rentVideo() ; break ;
-            case 6: ui.returnVideo() ; break ;
+            case 3: dataManager.registerCustomer(); ; break ;
+            case 4: dataManager.registerVideo(); ; break ;
+            case 5: dataManager.rentVideo() ; break ;
+            case 6: dataManager.returnVideo() ; break ;
             case 7: ui.getCustomerReport() ; break;
             case 8: ui.clearRentals() ; break ;
             case -1: ui.init() ; break ;
