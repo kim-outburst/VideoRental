@@ -1,10 +1,7 @@
 package VideoRental.view;
 
 import VideoRental.common.CommonUtils;
-import VideoRental.model.Customer;
-import VideoRental.model.Rental;
-import VideoRental.model.Video;
-import VideoRental.model.VideoRentalDataManager;
+import VideoRental.model.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +17,7 @@ public class VRUI {
 		this.dataManager = dataManager;
 	}
 
+	// separate query from modifier
 	public void clearRentals() {
 		System.out.println("Enter customer name: ") ;
 		String customerName = scanner.next() ;
@@ -67,8 +65,8 @@ public class VRUI {
 		this.dataManager.addCustomer(james);
 		this.dataManager.addCustomer(brown) ;
 
-		Video v1 = new Video("v1", Video.CD, Video.REGULAR, new Date()) ;
-		Video v2 = new Video("v2", Video.DVD, Video.NEW_RELEASE, new Date()) ;
+		Video v1 = new Video("v1", VideoType.CD, Video.REGULAR, new Date()) ;
+		Video v2 = new Video("v2", VideoType.DVD, Video.NEW_RELEASE, new Date()) ;
 		this.dataManager.addVideo(v1);
 		this.dataManager.addVideo(v2) ;
 
@@ -133,6 +131,7 @@ public class VRUI {
 		Rental rental = new Rental(foundVideo) ;
 		foundVideo.setRented(true);
 
+		// encapsulate collection
 		List<Rental> customerRentals = foundCustomer.getRentals() ;
 		customerRentals.add(rental);
 		foundCustomer.setRentals(customerRentals);
@@ -155,7 +154,7 @@ public class VRUI {
 		int priceCode = scanner.nextInt();
 
 		Date registeredDate = new Date();
-		this.dataManager.addVideo(new Video(title, videoType, priceCode, registeredDate)) ;
+		this.dataManager.addVideo(new Video(title, VideoType.convert(videoType), priceCode, registeredDate)) ;
 	}
 
 	public int showCommand() {

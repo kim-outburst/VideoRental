@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class Rental {
 	private Video video ;
+
+	// enum
 	private int status ; // 0 for Rented, 1 for Returned
 	private Date rentDate ;
 	private Date returnDate ;
@@ -65,9 +67,9 @@ public class Rental {
 		if ( daysRented <= 2) return limit ;
 
 		switch ( video.getVideoType() ) {
-			case Video.VHS: limit = 5 ; break ;
-			case Video.CD: limit = 3 ; break ;
-			case Video.DVD: limit = 2 ; break ;
+			case VHS: limit = 5 ; break ;
+			case CD: limit = 3 ; break ;
+			case DVD: limit = 2 ; break ;
 		}
 		return limit ;
 	}

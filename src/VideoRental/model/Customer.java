@@ -34,9 +34,11 @@ public class Customer {
 
 	}
 
+	// Long method (SRP) - Point - Charge + system.out | Logic + Rental (Divergent Change, Feature Envy)
 	public String getReport() {
 		String result = "Customer Report for " + getName() + "\n";
 
+		// rentals var
 		List<Rental> rentals = getRentals();
 
 		double totalCharge = 0;
