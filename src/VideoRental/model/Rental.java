@@ -6,13 +6,17 @@ public class Rental {
 	private Video video ;
 
 	// enum
-	private int status ; // 0 for Rented, 1 for Returned
+	private statusType status;
+
+	private enum statusType {
+		Rented, Returned;
+	}
 	private Date rentDate ;
 	private Date returnDate ;
 
 	public Rental(Video video) {
 		this.video = video ;
-		status = 0 ;
+		setStatus(statusType.Rented) ;
 		rentDate = new Date() ;
 	}
 
@@ -28,7 +32,11 @@ public class Rental {
 		return video.getInfo();
 	}
 
-	public int getStatus() {
+	public statusType getStatus() {
+		return status;
+	}
+
+	public statusType setStatus(statusType status) {
 		return status;
 	}
 
@@ -36,8 +44,8 @@ public class Rental {
 
 		// TODO: Dead code, need to fixed
 		//
-		if ( status == 1 ) {
-			this.status = 1;
+		if ( getStatus() == statusType.Returned) {
+			this.status = statusType.Returned;
 			returnDate = new Date() ;
 		}
 		//
@@ -74,7 +82,7 @@ public class Rental {
 	public int getdayRented() {
 		int daysRented;
 		long diff = 0;
-		if (getStatus() == 1) { // returned Video
+		if (getStatus() == statusType.Returned) { // returned Video
 			diff = returnDate.getTime() - rentDate.getTime();
 
 		} else { // not yet returned
