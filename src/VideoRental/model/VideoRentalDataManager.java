@@ -5,8 +5,10 @@ import VideoRental.common.CommonUtils;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class VideoRentalDataManager {
+    private static final Scanner scanner = new Scanner(System.in) ;
 
     private List<Customer> customers = new ArrayList<Customer>() ;
 
@@ -73,13 +75,57 @@ public class VideoRentalDataManager {
         }
     }
 
-    public void rentVideo(Customer customer, String videoTitle) {
+    public void returnVideo() {
+        System.out.println("Enter customer name: ") ;
+        String customerName = scanner.next() ;
+
+        Customer foundCustomer = CommonUtils.findCustomer(customerName, getCustomers());
+        if ( foundCustomer == null ) return ;
+
+        System.out.println("Enter video title to return: ") ;
+        String videoTitle = scanner.next() ;
+
+        returnVideo(foundCustomer, videoTitle);
+    }
+
+    public void rentVideo() {
+        System.out.println("Enter customer name: ") ;
+        String customerName = scanner.next() ;
+
+        Customer foundCustomer = CommonUtils.findCustomer(customerName, getCustomers());
+
+        if ( foundCustomer == null ) return ;
+
+        System.out.println("Enter video title to rent: ") ;
+        String videoTitle = scanner.next() ;
+
         Video foundVideo = CommonUtils.findVideo(videoTitle, getVideos()) ;
         if ( foundVideo == null ) return ;
 
         Rental rental = new Rental(foundVideo) ;
         foundVideo.setRented(true);
 
-        customer.addRental(rental);
+        // encapsulate collection
+        foundCustomer.addRental(rental);
+    }
+
+    public void registerCustomer() {
+        System.out.println("Enter customer name: ") ;
+        String name = scanner.next();
+        addCustomer(new Customer(name)) ;
+    }
+
+    public void registerVideo() {
+        System.out.println("Enter video title to register: ") ;
+        String title = scanner.next() ;
+
+        System.out.println("Enter video type( 1 for VHD, 2 for CD, 3 for DVD ):") ;
+        int videoType = scanner.nextInt();
+
+        System.out.println("Enter price code( 1 for Regular, 2 for New Release ):") ;
+        int priceCode = scanner.nextInt();
+
+        Date registeredDate = new Date();
+        addVideo(new Video(title, VideoType.convert(videoType), priceCode, registeredDate)) ;
     }
 }
