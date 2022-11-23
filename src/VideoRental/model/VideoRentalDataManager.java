@@ -51,4 +51,16 @@ public class VideoRentalDataManager {
         james.addRental(r1) ;
         james.addRental(r2) ;
     }
+
+    public void returnVideo(Customer foundCustomer, String videoTitle) {
+        List<Rental> customerRentals = foundCustomer.getRentals() ;
+        for ( Rental rental: customerRentals ) {
+            final Video video = rental.getVideo();
+            if ( video.getTitle().equals(videoTitle) && video.isRented() ) {
+                rental.returnVideo();
+                rental.getVideo().setRented(false);
+                break ;
+            }
+        }
+    }
 }

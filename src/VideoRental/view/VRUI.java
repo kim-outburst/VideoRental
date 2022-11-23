@@ -52,15 +52,7 @@ public class VRUI {
 		System.out.println("Enter video title to return: ") ;
 		String videoTitle = scanner.next() ;
 
-		List<Rental> customerRentals = foundCustomer.getRentals() ;
-		for ( Rental rental: customerRentals ) {
-			final Video video = rental.getVideo();
-			if ( video.getTitle().equals(videoTitle) && video.isRented() ) {
-				rental.returnVideo();
-				rental.getVideo().setRented(false);
-				break ;
-			}
-		}
+		this.dataManager.returnVideo(foundCustomer, videoTitle);
 	}
 
 	public void init() {
