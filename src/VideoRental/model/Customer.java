@@ -48,24 +48,12 @@ public class Customer {
 		for (Rental each : rentals) {
 			double eachCharge = 0;
 			int eachPoint = 0 ;
-			int daysRented = 0;
 
-			daysRented = each.getdayRented();
-
-			switch (each.getVideo().getPriceCode()) {
-			case Video.REGULAR:
-				eachCharge += 2;
-				if (daysRented > 2)
-					eachCharge += (daysRented - 2) * 1.5;
-				break;
-			case Video.NEW_RELEASE:
-				eachCharge = daysRented * 3;
-				break;
-			}
+			eachCharge = getEachCharge(each);
 
 			eachPoint = getEachPoints(each);
 
-			result += "\t" + each.getVideo().getTitle() + "\tDays rented: " + daysRented + "\tCharge: " + eachCharge
+			result += "\t" + each.getVideo().getTitle() + "\tDays rented: " + each.getdayRented() + "\tCharge: " + eachCharge
 					+ "\tPoint: " + eachPoint + "\n";
 
 			totalCharge += eachCharge;
@@ -102,6 +90,28 @@ public class Customer {
 		}
 
 		return eachPoint;
+	}
+
+	public double getEachCharge(Rental rental) {
+		double eachCharge = 0;
+
+		if (rental != NULL) {
+			int daysRented = 0;
+			daysRented = rental.getdayRented();
+
+			switch (rental.getVideo().getPriceCode()) {
+				case Video.REGULAR:
+					eachCharge += 2;
+					if (daysRented > 2)
+						eachCharge += (daysRented - 2) * 1.5;
+					break;
+				case Video.NEW_RELEASE:
+					eachCharge = daysRented * 3;
+					break;
+			}
+		}
+
+		return eachCharge;
 	}
 
 }
