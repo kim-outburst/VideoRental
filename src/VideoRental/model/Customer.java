@@ -40,12 +40,12 @@ public class Customer {
 		String result = "Customer Report for " + getName() + "\n";
 
 		// rentals var
-		List<Rental> rentals = getRentals();
+		List<Rental> rentedVideoinfo = getRentals();
 
 		double totalCharge = 0;
 		int totalPoint = 0;
 
-		for (Rental each : rentals) {
+		for (Rental each : rentedVideoinfo) {
 			double eachCharge = 0;
 			int eachPoint = 0 ;
 
