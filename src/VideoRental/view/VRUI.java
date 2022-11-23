@@ -28,7 +28,7 @@ public class VRUI {
 		this.dataManager.clearRentals(foundCustomer);
 	}
 
-	private static void showCustomer(Customer foundCustomer) {
+	private void showCustomer(Customer foundCustomer) {
 		if ( foundCustomer == null ) {
 			System.out.println("No customer found") ;
 		} else {
