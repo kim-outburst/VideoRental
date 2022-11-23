@@ -11,10 +11,30 @@ import java.util.Scanner;
 public class VRUI {
 	private static final Scanner scanner = new Scanner(System.in) ;
 
+	private static final String[] MENU_LIST = {
+		"\nSelect a command !",
+		"\t 0. Quit",
+		"\t 1. List customers",
+		"\t 2. List videos",
+		"\t 3. Register customer",
+		"\t 4. Register video",
+		"\t 5. Rent video",
+		"\t 6. Return video",
+		"\t 7. Show customer report",
+		"\t 8. Show customer and clear rentals",
+	};
+
 	private final VideoRentalDataManager dataManager;
 
 	public VRUI(VideoRentalDataManager dataManager) {
 		this.dataManager = dataManager;
+	}
+
+	public int showCommand() {
+		for (String menu : MENU_LIST) {
+			System.out.println(menu);
+		}
+		return scanner.nextInt() ;
 	}
 
 	// separate query from modifier
@@ -78,21 +98,6 @@ public class VRUI {
 			String result = foundCustomer.getReport() ;
 			System.out.println(result);
 		}
-	}
-
-
-	public int showCommand() {
-		System.out.println("\nSelect a command !");
-		System.out.println("\t 0. Quit");
-		System.out.println("\t 1. List customers");
-		System.out.println("\t 2. List videos");
-		System.out.println("\t 3. Register customer");
-		System.out.println("\t 4. Register video");
-		System.out.println("\t 5. Rent video");
-		System.out.println("\t 6. Return video");
-		System.out.println("\t 7. Show customer report");
-		System.out.println("\t 8. Show customer and clear rentals");
-		return scanner.nextInt() ;
 	}
 
 	public void returnVideo() {
