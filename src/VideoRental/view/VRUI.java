@@ -124,9 +124,7 @@ public class VRUI {
 		foundVideo.setRented(true);
 
 		// encapsulate collection
-		List<Rental> customerRentals = foundCustomer.getRentals() ;
-		customerRentals.add(rental);
-		foundCustomer.setRentals(customerRentals);
+		foundCustomer.addRental(rental);
 	}
 
 	public void registerCustomer() {
