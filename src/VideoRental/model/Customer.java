@@ -53,7 +53,7 @@ public class Customer {
 
 			eachPoint = getEachPoints(each);
 
-			result += "\t" + each.getVideo().getTitle() + "\tDays rented: " + each.getdayRented() + "\tCharge: " + eachCharge
+			result += "\t" + each.getVideoTitle() + "\tDays rented: " + each.getdayRented() + "\tCharge: " + eachCharge
 					+ "\tPoint: " + eachPoint + "\n";
 
 			totalCharge += eachCharge;
@@ -76,13 +76,13 @@ public class Customer {
 	public int getEachPoints(Rental rental) {
 		int eachPoint = 0 ;
 
-		if (rental != NULL) {
+		if (rental != null) {
 			int daysRented = 0;
 			daysRented = rental.getdayRented();
 
 			eachPoint++;
 
-			if ((rental.getVideo().getPriceCode() == Video.NEW_RELEASE) )
+			if ((rental.getVideoPriceCode() == Video.NEW_RELEASE) )
 				eachPoint++;
 
 			if ( daysRented > rental.getDaysRentedLimit() )
@@ -95,11 +95,11 @@ public class Customer {
 	public double getEachCharge(Rental rental) {
 		double eachCharge = 0;
 
-		if (rental != NULL) {
+		if (rental != null) {
 			int daysRented = 0;
 			daysRented = rental.getdayRented();
 
-			switch (rental.getVideo().getPriceCode()) {
+			switch (rental.getVideoPriceCode()) {
 				case Video.REGULAR:
 					eachCharge += 2;
 					if (daysRented > 2)

@@ -38,8 +38,8 @@ public class VRUI {
 			System.out.println("Name: " + foundCustomer.getName() +
 					"\tRentals: " + foundCustomer.getRentals().size()) ;
 			for ( Rental rental: foundCustomer.getRentals() ) {
-				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ") ;
-				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode()) ;
+				System.out.print("\tTitle: " + rental.getVideoTitle() + " ") ;
+				System.out.print("\tPrice Code: " + rental.getVideoPriceCode()) ;
 			}
 		}
 	}
@@ -56,7 +56,7 @@ public class VRUI {
 
 		List<Rental> customerRentals = foundCustomer.getRentals() ;
 		for ( Rental rental: customerRentals ) {
-			if ( rental.getVideo().getTitle().equals(videoTitle) && rental.getVideo().isRented() ) {
+			if ( rental.getVideoTitle().equals(videoTitle) && rental.getVideo().isRented() ) {
 				rental.returnVideo();
 				rental.getVideo().setRented(false);
 				break ;
@@ -98,8 +98,8 @@ public class VRUI {
 			System.out.println("Name: " + customer.getName() +
 					"\tRentals: " + customer.getRentals().size()) ;
 			for ( Rental rental: customer.getRentals() ) {
-				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ") ;
-				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode()) ;
+				System.out.print("\tTitle: " + rental.getVideoTitle() + " ") ;
+				System.out.print("\tPrice Code: " + rental.getVideoPriceCode()) ;
 			}
 		}
 		System.out.println("End of list");
